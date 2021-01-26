@@ -36,7 +36,7 @@ public class Patient {
 	private String gender;
 
 	@Column(name = "status")
-	private int status;
+	private boolean status;
 
 	public long getPatientId() {
 		return patientId;
@@ -102,16 +102,16 @@ public class Patient {
 		this.gender = gender;
 	}
 
-	public int getStatus() {
+	public boolean getStatus() {
 		return status;
 	}
 
-	public void setStatus(int status) {
+	public void setStatus(boolean status) {
 		this.status = status;
 	}
 
 	public Patient(long patientId, String firstName, String middleName, String lastName, String email, String contactNumber,
-			Date birthdate, String gender, int status) {
+			Date birthdate, String gender, boolean status) {
 		super();
 		this.patientId = patientId;
 		this.firstName = firstName;
@@ -123,10 +123,9 @@ public class Patient {
 		this.gender = gender;
 		this.status = status;
 	}
+	
 	public Patient() {
 		
 	}
-	
-	
 	
 }

@@ -2,7 +2,6 @@ package com.prms.main.services;
 import java.util.List; 
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.prms.main.models.Address;
@@ -20,7 +19,7 @@ public class AddressServices {
     }
      
     public List<Address> listAll() {
-        return repo.findAll(Sort.by("p_id").ascending());
+        return repo.findAll();
     }
      
 }

@@ -3,13 +3,11 @@ package com.prms.main.controllers;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,17 +29,16 @@ public class PatientController {
         this.pService = pService;
         this.aService = aService;
     }
-
    
     @GetMapping()
     public List<Patient> all() {
        return pService.listAll();
     }
 
-    // @GetMapping("/address")
-    // public List<Address> getAddresses(){
-    //     return (List<Address>) aService.listAll();
-    // }
+     @GetMapping("/address")
+     public List<Address> getAddresses(){
+         return (List<Address>) aService.listAll();
+     }
 
     @GetMapping("/export")
     public void exportToExcel(HttpServletResponse response) throws IOException {
@@ -49,7 +46,7 @@ public class PatientController {
             response.setContentType("application/octet-stream");
 
             DateFormat df = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
-            String filename = "PatientRecords_" + df.format(LocalDateTime.now());
+            String filename = "PatientRecords_" + df.format(new Date());
 
             String headerKey = "Content-Disposition";
             String headerValue = "attachment; filename=" + filename + ".xlsx";
@@ -57,9 +54,9 @@ public class PatientController {
 
             List<Patient> listPatient = pService.listAll();
             List<Address> listAddress = aService.listAll();
-
+            
             ExcelExporter excelExporter = new ExcelExporter(listPatient, listAddress);
-
+            
             excelExporter.export(response);
         } catch (Exception e) {
             e.printStackTrace();
