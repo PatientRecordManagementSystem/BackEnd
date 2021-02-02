@@ -178,9 +178,9 @@ public class PatientController {
  			List<Patient> listPatient = filter(_filter);
  	    	List<Address> listAddress = aService.listAll();
  	    	
- 	    	ExcelExporter excelExproter = new ExcelExporter(listPatient,listAddress);
+ 	    	ExcelExporter excelExporter = new ExcelExporter(listPatient,listAddress);
 	         
-	        ByteArrayOutputStream baos = excelExproter.export();
+	        ByteArrayOutputStream baos = excelExporter.export();
  	         
  	        DateFormat df = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
  	        String filename = "PatientRecords_" + df.format(new Date());
