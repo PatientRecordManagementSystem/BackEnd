@@ -1,5 +1,7 @@
 package com.prms.main.models;
 
+import java.util.Date;
+
 public class Filter {
 	private boolean filterValue;
 	private boolean status;
@@ -9,8 +11,8 @@ public class Filter {
 	private boolean female;
 	private boolean others;
 	private String statusValue;
-	private String startDate;
-	private String endDate;
+	private Date startDate;
+	private Date endDate;
 	
 	public boolean isFilterValue() {
 		return filterValue;
@@ -36,15 +38,16 @@ public class Filter {
 	public String getStatusValue() {
 		return statusValue;
 	}
-	public String getStartDate() {
+	public Date getStartDate() {
 		return startDate;
 	}
-	public String getEndDate() {
+	public Date getEndDate() {
 		return endDate;
 	}
 	
+	
 	public Filter(boolean filterValue, boolean status, boolean gender, boolean birthdate, boolean male, boolean female,
-			boolean others, String statusValue, String startDate, String endDate) {
+			boolean others, String statusValue, Date startDate, Date endDate) {
 		super();
 		this.filterValue = filterValue;
 		this.status = status;
