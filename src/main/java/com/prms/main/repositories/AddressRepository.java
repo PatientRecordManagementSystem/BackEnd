@@ -23,5 +23,10 @@ public interface AddressRepository extends JpaRepository<Address, Long> {
 	@Query(value ="SELECT * FROM address WHERE p_id = :p_id" ,nativeQuery=true)
 	public List<Address> getAllAddressByID(@Param("p_id") long p_id);
 	
+	
+	
+	@Query(value = "SELECT * FROM address where address = :address AND p_id = :p_id LIMIT 1 ", nativeQuery=true)
+	public Address checkForDuplicateAddress(@Param("address") String address, @Param("p_id") long p_id);
+	
 
 }

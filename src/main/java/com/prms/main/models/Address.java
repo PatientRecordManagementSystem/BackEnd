@@ -2,22 +2,26 @@ package com.prms.main.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "address", uniqueConstraints={@UniqueConstraint(columnNames ={"address"})})
+@Table(name = "address")
+//, uniqueConstraints={@UniqueConstraint(columnNames ={"address"})}
 public class Address {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "a_id")
 	private long addressId;
 	
 	@Column(name = "p_id")
 	private long patientId;
 	
-	@Column(name = "address" , unique=true)
+	@Column(name = "address")
 	private String address;
 
 

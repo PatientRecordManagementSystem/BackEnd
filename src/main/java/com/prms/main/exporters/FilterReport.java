@@ -1,7 +1,5 @@
 package com.prms.main.exporters;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -35,13 +33,8 @@ public class FilterReport {
 				this.female = filter.isFemale();
 				this.others = filter.isOthers();
 				this.statusValue = filter.getStatusValue().equals("activated") ? 1:0;
-				try {
-					this.dateStart = new SimpleDateFormat("yyyy-MM-dd").parse(filter.getStartDate());
-					this.dateEnd = new SimpleDateFormat("yyyy-MM-dd").parse(filter.getEndDate());
-				} catch (ParseException e) {
-					this.dateStart = new Date();
-					this.dateEnd = new Date();
-				}
+				this.dateStart = filter.getStartDate();
+				this.dateEnd = filter.getEndDate();
 			}
 		
 		public List<Patient> filter() {
