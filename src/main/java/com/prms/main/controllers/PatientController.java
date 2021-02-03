@@ -150,9 +150,21 @@ public class PatientController {
      public ResponseEntity<Address> addAddress(@RequestBody Address address)
      {
     	 try {
-    		 Address _address = addressRepository
-    				 .save(new Address(address.getAddress(), address.getPatientId()));
-    		 return new ResponseEntity<>(_address, HttpStatus.CREATED);
+    		 
+    		 boolean isDuplicate = addressRepository.checkForDuplicateAddress(address.getAddress(), address.getPatientId()) != null;
+    		 if(!isDuplicate)
+    		 {
+    			 Address _address = addressRepository
+        				 .save(new Address(address.getAddress(), address.getPatientId()));
+        		 System.out.println("Hello Test");
+        		 return new ResponseEntity<>(_address, HttpStatus.CREATED);
+    		 }
+    		 else
+    		 {
+    			 return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+    		 }
+    		
+    		 
     	 }
     	 
     	 catch (Exception e)
